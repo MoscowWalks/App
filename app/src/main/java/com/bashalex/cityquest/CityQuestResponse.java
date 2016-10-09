@@ -5,6 +5,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import java.util.Arrays;
+
 /**
  * Created by Alex Bash on 08.10.16.
  */
@@ -14,20 +16,28 @@ public class CityQuestResponse {
     private String[] images;
     private String address;
     private String[] way;
+    private String[] distances;
     private String image;
     private String error;
     private boolean last;
 
-    public CityQuestResponse(String name, JsonArray images, String address, JsonArray way,
-                             String image, String error, Boolean last) {
+    public CityQuestResponse(String name, String[] images, String address, String[] way,
+                             String image, String error, Boolean last, String[] distances) {
         this.name = name;
-        for (JsonElement img: images) {
-            images.add(img.toString());
-        }
+//        for (JsonElement img: images) {
+//            images.add(img.toString());
+//        }
+//        this.address = address;
+//        for (JsonElement step: way) {
+//            way.add(step.toString());
+//        }
+//        for (JsonElement dist: distance) {
+//            distance.add(dist.toString());
+//        }
+        this.images = images;
+        this.way = way;
         this.address = address;
-        for (JsonElement step: way) {
-            way.add(step.toString());
-        }
+        this.distances = distances;
         this.image = image;
         this.error = error;
         this.last = last;
@@ -93,14 +103,25 @@ public class CityQuestResponse {
         this.last = last;
     }
 
+    public String[] getDistances() {
+        return distances;
+    }
+
+    public void setDistances(String[] distances) {
+        this.distances = distances;
+    }
+
     @Override
     public String toString() {
         return "CityQuestResponse{" +
                 "name='" + name + '\'' +
-                ", images=" + images +
+                ", images=" + Arrays.toString(images) +
                 ", address='" + address + '\'' +
-                ", way=" + way +
+                ", way=" + Arrays.toString(way) +
+                ", distances=" + Arrays.toString(distances) +
                 ", image='" + image + '\'' +
+                ", error='" + error + '\'' +
+                ", last=" + last +
                 '}';
     }
 }

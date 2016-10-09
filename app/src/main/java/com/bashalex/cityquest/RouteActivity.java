@@ -26,6 +26,7 @@ public class RouteActivity extends AppCompatActivity {
     private String address;
     private String name;
     private boolean lastPoint;
+    private String[] distances;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,11 +38,12 @@ public class RouteActivity extends AppCompatActivity {
         steps = intent.getStringArrayExtra("way");
         address = intent.getStringExtra("address");
         image = intent.getStringExtra("image");
+        distances = intent.getStringArrayExtra("distances");
         name = intent.getStringExtra("name");
         lastPoint = intent.getBooleanExtra("lastPoint", false);
 
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(), images,
-                steps, name, image, lastPoint);
+                steps, name, image, lastPoint, distances);
         viewPager.setAdapter(mPagerAdapter);
     }
 
@@ -50,12 +52,14 @@ public class RouteActivity extends AppCompatActivity {
         int num_of_steps;
         String[] images;
         String[] steps;
+        String[] distances;
         String name;
         String image;
         boolean lastPoint;
 
         public ScreenSlidePagerAdapter(FragmentManager fm, String[] images, String[] steps,
-                                       String name, String image, boolean lastPoint) {
+                                       String name, String image, boolean lastPoint,
+                                       String[] distances) {
             super(fm);
             num_of_steps = images.length + 2;
             this.images = images;
@@ -63,6 +67,7 @@ public class RouteActivity extends AppCompatActivity {
             this.name = name;
             this.image = image;
             this.lastPoint = lastPoint;
+            this.distances = distances;
         }
 
         @Override
@@ -74,10 +79,10 @@ public class RouteActivity extends AppCompatActivity {
                     return NextStepFragment.newInstance(image);
                 }
             } else if (position == num_of_steps - 2) {
-                return StepFragment.newInstance(image, name, 0);
+                return StepFragment.newInstance(image, name, 0, "");
             } else {
                 return StepFragment.newInstance(images[position],
-                        steps[position], position + 1);
+                        steps[position], position + 1, distances[position]);
             }
         }
 

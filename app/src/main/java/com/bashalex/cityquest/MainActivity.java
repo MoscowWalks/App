@@ -173,12 +173,13 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(this, "Server error :(", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    Log.d(TAG, "" + response);
+                    Log.d(TAG, "response:" +  response);
                     Intent intent = new Intent(this, RouteActivity.class);
                     intent.putExtra("name", response.getName());
                     intent.putExtra("images", response.getImages());
                     intent.putExtra("way", response.getWay());
                     intent.putExtra("address", response.getAddress());
+                    intent.putExtra("distances", response.getDistances());
                     intent.putExtra("image", response.getImage());
                     intent.putExtra("lastPoint", false);
                     startActivity(intent);

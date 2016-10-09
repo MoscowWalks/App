@@ -3,6 +3,7 @@ package com.bashalex.cityquest;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,11 +23,13 @@ public class StepFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final String ARG_PARAM3 = "param3";
+    private static final String ARG_PARAM4 = "param4";
 
 
     private String mImageLink;
     private String mText;
     private int mStepId;
+    private String mDistance;
 
     @BindView(R.id.step_image)
     ImageView imageView;
@@ -37,6 +40,9 @@ public class StepFragment extends Fragment {
     @BindView(R.id.step_description)
     TextView textDescription;
 
+    @BindView(R.id.step_distance)
+    TextView textDistance;
+
     @BindView(R.id.progress_bar)
     ProgressBar prBarView;
 
@@ -45,12 +51,13 @@ public class StepFragment extends Fragment {
     }
 
 
-    public static StepFragment newInstance(String imageLink, String text, int stepNumber) {
+    public static StepFragment newInstance(String imageLink, String text, int stepNumber, String distance) {
         StepFragment fragment = new StepFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, imageLink);
         args.putString(ARG_PARAM2, text);
         args.putInt(ARG_PARAM3, stepNumber);
+        args.putString(ARG_PARAM4, distance);
         fragment.setArguments(args);
         return fragment;
     }
@@ -62,6 +69,7 @@ public class StepFragment extends Fragment {
             mImageLink = getArguments().getString(ARG_PARAM1);
             mText = getArguments().getString(ARG_PARAM2);
             mStepId = getArguments().getInt(ARG_PARAM3);
+            mDistance = getArguments().getString(ARG_PARAM4);
         }
     }
 
@@ -74,7 +82,9 @@ public class StepFragment extends Fragment {
         if (mStepId == 0) {
             textName.setText("Сейчас вы находитесь рядом с");
         } else {
+            Log.d("step", "" + mDistance);
             textName.setText(String.format(Locale.getDefault(), "ШАГ %d", mStepId));
+            textDistance.setText(mDistance);
         }
         Picasso.with(getContext())
                 .load(mImageLink)
