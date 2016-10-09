@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "310656519533",
+    "firebase_url": "https://cityquest-145814.firebaseio.com",
+    "project_id": "cityquest-145814",
+    "storage_bucket": "cityquest-145814.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:310656519533:android:d9bce1de0dc8c667",
+        "android_client_info": {
+          "package_name": "com.bashalex.cityquest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "310656519533-bgse510okkloppk4i4vt6dkrlksfd7gd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bashalex.cityquest",
+            "certificate_hash": "5456FACA16DEBCBB6E4E70746C976F99C17CFE4B"
+          }
+        },
+        {
+          "client_id": "310656519533-7q3gji0j1cji4157mug06c3v40lsok81.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALRx06y8_alJIBQEDR8Xty1vrNL06GtKQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "310656519533-7q3gji0j1cji4157mug06c3v40lsok81.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

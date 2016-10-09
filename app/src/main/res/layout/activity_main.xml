@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/main_content_songs"
+    android:transitionName="tHolder"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/main_inputs"
+        android:layout_width="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@android:color/transparent"
+        app:cardElevation="16dp"
+        card_view:cardCornerRadius="16dp"
+        android:alpha="0.92">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="@string/choose_location"
+                android:textStyle="bold"
+                android:layout_gravity="top|left"
+                android:gravity="center_vertical"
+                android:textColor="@color/md_black_1000"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"/>
+
+            <Button
+                android:id="@+id/button_from"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp"
+                android:text="FROM"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="@string/choose_destination"
+                android:textStyle="bold"
+                android:layout_gravity="top|left"
+                android:gravity="center_vertical"
+                android:textColor="@color/md_black_1000"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"/>
+
+            <Button
+                android:id="@+id/button_to"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TO"/>
+
+            <TextView
+                android:layout_marginTop="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="@string/choose_time"
+                android:textStyle="bold"
+                android:layout_gravity="top|left"
+                android:gravity="center_vertical"
+                android:textColor="@color/md_black_1000"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"/>
+
+            <EditText
+                android:layout_marginBottom="18dp"
+                android:id="@+id/time_chooser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:ems="10"
+                android:layout_marginLeft="8dp"
+                android:textColor="@color/mAccentDark"/>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <Button
+        android:id="@+id/start"
+        android:layout_below="@id/main_inputs"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Составить маршрут!"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/header"
+        android:scaleType="centerCrop"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <ProgressBar
+        android:layout_centerInParent="true"
+        android:id="@+id/pr_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+
+</RelativeLayout>

@@ -1,0 +1,17 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/mPrimary</item>
+        <item name="colorPrimaryDark">@color/mPrimaryDark</item>
+        <item name="colorAccent">@color/mAccent</item>
+        <item name="colorButtonNormal">@color/mPrimary</item>
+        <item name="android:colorBackground">@color/mBackground</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:displayOptions">disableHome</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:itemBackground">@color/mPrimary</item>
+        <item name="android:textColorSecondary">@color/mPrimary</item>
+    </style>
+
+</resources>
