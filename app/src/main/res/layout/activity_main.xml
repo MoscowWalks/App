@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout android:id="@+id/main_content_songs"
-    android:transitionName="tHolder"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -14,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:background="@android:color/transparent"
+        app:cardBackgroundColor="@android:color/white"
         app:cardElevation="16dp"
         card_view:cardCornerRadius="16dp"
         android:alpha="0.92">
@@ -45,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="0dp"
-                android:text="FROM"/>
+                android:text="@string/from_txt"/>
 
             <TextView
                 android:layout_marginTop="10dp"
@@ -67,7 +66,7 @@
                 android:id="@+id/button_to"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TO"/>
+                android:text="@string/to_txt"/>
 
             <TextView
                 android:layout_marginTop="6dp"
@@ -84,14 +83,16 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginEnd="16dp"/>
 
-            <EditText
+            <TextView
                 android:layout_marginBottom="18dp"
                 android:id="@+id/time_chooser"
+                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="time"
-                android:ems="10"
+                android:text="00:00"
                 android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                android:textSize="22sp"
                 android:textColor="@color/mAccentDark"/>
         </LinearLayout>
 
@@ -102,18 +103,20 @@
         android:layout_below="@id/main_inputs"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="Составить маршрут!"
+        android:text="@string/create_route"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"/>
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"/>
 
     <ImageView
+        android:id="@+id/bg_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/header"
         android:scaleType="centerCrop"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentLeft="true" />
 
     <ProgressBar
         android:layout_centerInParent="true"

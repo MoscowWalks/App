@@ -3,35 +3,36 @@ package com.bashalex.cityquest;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.icu.util.Calendar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
+
+import org.w3c.dom.Text;
+
+import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private Subscription loadSubscr;
-    private GoogleApiClient mGoogleApiClient;
     int PLACE_PICKER_REQUEST_1 = 1;
     int PLACE_PICKER_REQUEST_2 = 2;
 
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private Double destination_latitude, destination_longitude;
     private Integer arrivalHour, arrivalMinute;
     private String destination_name;
+    private boolean activeRequest = false;
 
     @BindView(R.id.button_from)
     Button fromBtn;
@@ -47,10 +49,16 @@ public class MainActivity extends AppCompatActivity {
     Button toBtn;
 
     @BindView(R.id.time_chooser)
-    EditText timeChooser;
+    TextView timeChooser;
 
     @BindView(R.id.pr_bar)
     ProgressBar prBar;
+
+    @BindView(R.id.start)
+    Button startBtn;
+
+    @BindView(R.id.main_inputs)
+    CardView cardView;
 
 
     @Override
@@ -58,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        cardView.bringToFront();
+        startBtn.bringToFront();
 
         InputMethodManager im = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         im.hideSoftInputFromWindow(timeChooser.getWindowToken(), 0);
@@ -131,10 +142,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.time_chooser)
-    public void showPickChooser(EditText view) {
-        Calendar mcurrentTime = Calendar.getInstance();
-        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-        int minute = mcurrentTime.get(Calendar.MINUTE);
+    public void showPickChooser(TextView view) {
+        Calendar mCurrentTime = Calendar.getInstance();
+        int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
+        int minute = mCurrentTime.get(Calendar.MINUTE);
         TimePickerDialog mTimePicker;
         mTimePicker = new TimePickerDialog(this, (timePicker, selectedHour, selectedMinute) -> {
                     view.setText( selectedHour + ":" + (selectedMinute < 10 ? "0" : "") + selectedMinute);
@@ -147,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.start)
     public void start_quest() {
+        if (activeRequest) return;
         if (location_latitude != null && location_longitude != null &&
                 destination_latitude != null && destination_longitude != null &&
                 arrivalHour != null && arrivalMinute != null) {
@@ -156,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
                     arrivalHour, arrivalMinute, destination_name);
             API.getRoute(true)
                 .doOnSubscribe(() -> {
-                    Log.d(TAG, "onSubscribe()");
+                    activeRequest = true;
                     runOnUiThread(() -> {
                         prBar.setVisibility(View.VISIBLE);
                         prBar.bringToFront();
@@ -166,10 +178,11 @@ public class MainActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnCompleted(() -> {
                     Log.d(TAG, "onCompleted()");
+                    activeRequest = false;
                     runOnUiThread(() -> prBar.setVisibility(View.GONE));
                 })
                 .subscribe(response -> {
-                    if (response.getError() != null) {
+                    if (response.getError() != null || response.getImages() == null) {
                         Toast.makeText(this, "Server error :(", Toast.LENGTH_SHORT).show();
                         return;
                     }

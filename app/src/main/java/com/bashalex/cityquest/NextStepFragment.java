@@ -35,6 +35,7 @@ public class NextStepFragment extends Fragment {
 
     private String mImageLink;
     private int stepNum;
+    private boolean activeRequest = false;
 
     public NextStepFragment() {
         // Required empty public constructor
@@ -85,11 +86,14 @@ public class NextStepFragment extends Fragment {
 
     @OnClick(R.id.next_btn)
     public void loadNextStep() {
+        if (activeRequest) return;
         API.getRoute(false)
                 .subscribeOn(Schedulers.io())
+                .doOnSubscribe(() -> activeRequest = true)
+                .doOnCompleted(() -> activeRequest = false)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(response -> {
-                    if (response.getError() != null) {
+                    if (response.getError() != null || response.getImages() == null) {
                         --API.objectNum;
                         return;
                     }
@@ -101,6 +105,7 @@ public class NextStepFragment extends Fragment {
                     intent.putExtra("address", response.getAddress());
                     intent.putExtra("image", response.getImage());
                     intent.putExtra("lastPoint", response.isLast());
+                    intent.putExtra("distances", response.getDistances());
                     startActivity(intent);
                     this.getActivity().finish();
                 });

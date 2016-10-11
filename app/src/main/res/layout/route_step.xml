@@ -21,13 +21,13 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="@dimen/image_height"
                 android:background="#edf5fc">
 
                 <ImageView
                     android:id="@+id/step_image"
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
+                    android:layout_height="300dp"
                     android:scaleType="centerCrop"/>
 
                 <ProgressBar
@@ -80,7 +80,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
                         android:layout_marginTop="4dp"
-                        android:text="Дистанция"/>
+                        android:text=""/>
 
                 </LinearLayout>
             </ScrollView>

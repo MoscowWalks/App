@@ -24,16 +24,6 @@ public class CityQuestResponse {
     public CityQuestResponse(String name, String[] images, String address, String[] way,
                              String image, String error, Boolean last, String[] distances) {
         this.name = name;
-//        for (JsonElement img: images) {
-//            images.add(img.toString());
-//        }
-//        this.address = address;
-//        for (JsonElement step: way) {
-//            way.add(step.toString());
-//        }
-//        for (JsonElement dist: distance) {
-//            distance.add(dist.toString());
-//        }
         this.images = images;
         this.way = way;
         this.address = address;

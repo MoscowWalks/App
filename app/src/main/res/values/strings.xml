@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">CityQuest</string>
-    <string name="from">From</string>
+    <string name="app_name">Прогулки по Москве</string>
     <string name="choose_location">Выберите стартовую точку:</string>
     <string name="choose_destination">Выберите конечную точку:</string>
     <string name="choose_time">Время прибытия:</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="from_txt">ОТКУДА</string>
+    <string name="to_txt">КУДА</string>
+    <string name="create_route">Составить маршрут!</string>
 </resources>

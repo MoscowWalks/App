@@ -22,7 +22,7 @@ public class API {
     private static final String TAG = "API";
 
     private static CityQuestService CityQuestClient;
-    private static final String URL = "http://172.16.28.73:8000/";
+    private static final String URL = "http://bashserver5877.cloudapp.net:8000/";
 
     private static Double location_latitude, location_longitude;
     private static Double destination_latitude, destination_longitude;
