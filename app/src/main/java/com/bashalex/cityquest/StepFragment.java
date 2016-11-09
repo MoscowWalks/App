@@ -76,7 +76,7 @@ public class StepFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.route_step, container, false);
+        View view = inflater.inflate(R.layout.step, container, false);
         ButterKnife.bind(this, view);
         textDescription.setText(mText);
         if (mStepId == 0) {
