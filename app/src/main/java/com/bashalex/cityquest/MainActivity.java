@@ -1,16 +1,13 @@
 package com.bashalex.cityquest;
 
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,9 +17,9 @@ import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
-import org.w3c.dom.Text;
 
 import java.util.Calendar;
+import java.util.TimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
         cardView.bringToFront();
         startBtn.bringToFront();
 
-        InputMethodManager im = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-        im.hideSoftInputFromWindow(timeChooser.getWindowToken(), 0);
+//        InputMethodManager im = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+//        im.hideSoftInputFromWindow(timeChooser.getWindowToken(), 0);
     }
 
 
@@ -146,11 +143,13 @@ public class MainActivity extends AppCompatActivity {
         Calendar mCurrentTime = Calendar.getInstance();
         int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
         int minute = mCurrentTime.get(Calendar.MINUTE);
+        long offset = TimeZone.getDefault().getRawOffset() / 1000;
         TimePickerDialog mTimePicker;
         mTimePicker = new TimePickerDialog(this, (timePicker, selectedHour, selectedMinute) -> {
                     view.setText( selectedHour + ":" + (selectedMinute < 10 ? "0" : "") + selectedMinute);
                     arrivalMinute = selectedMinute;
-                    arrivalHour = selectedHour;
+                    arrivalHour = selectedHour - (int) (offset / 3600);
+                    if (arrivalHour < 0) arrivalHour = 24 - arrivalHour;
                 }, hour, minute, true);
         mTimePicker.setTitle("Select Time");
         mTimePicker.show();
