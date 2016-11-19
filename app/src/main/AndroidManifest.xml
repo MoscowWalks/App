@@ -14,12 +14,11 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBOXxrQOOn8lt6ZCV60746sDlqhV7QLf2s" />
+            android:value="AIzaSyBCJzR9d8nSMfUs-u5x4vCL7E6M9WFswcs" />
 
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

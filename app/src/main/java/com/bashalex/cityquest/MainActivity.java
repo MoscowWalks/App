@@ -1,12 +1,14 @@
 package com.bashalex.cityquest;
 
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -66,9 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
         cardView.bringToFront();
         startBtn.bringToFront();
-
-//        InputMethodManager im = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-//        im.hideSoftInputFromWindow(timeChooser.getWindowToken(), 0);
     }
 
 
